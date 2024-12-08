@@ -1,0 +1,130 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:KrIDE.ViewModels"
+        xmlns:viewmodels="clr-namespace:KrIDE.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="KrIDE.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="KrIDE"
+        Background="{DynamicResource SystemChromeLowColor}"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True">
+
+    <Window.Resources>
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="TreeViewItem">
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style Selector="TabControl">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style Selector="TabItem">
+            <Setter Property="Padding" Value="8 4"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Margin" Value="0 0 4 0"/>
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style Selector="MenuItem">
+            <Setter Property="Padding" Value="8 4"/>
+        </Style>
+        <Style Selector="Menu">
+            <Setter Property="Background" Value="{DynamicResource SystemChromeMediumLowColor}"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+    </Window.Styles>
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <DockPanel Margin="0">
+        <Menu DockPanel.Dock="Top" Margin="85,8,8,0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New"/>
+                <MenuItem Header="_Open"/>
+                <MenuItem Header="_Save"/>
+                <MenuItem Header="Save _As"/>
+                <Separator/>
+                <MenuItem Header="E_xit"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Undo"/>
+                <MenuItem Header="_Redo"/>
+                <Separator/>
+                <MenuItem Header="Cu_t"/>
+                <MenuItem Header="_Copy"/>
+                <MenuItem Header="_Paste"/>
+            </MenuItem>
+            <MenuItem Header="_Help"/>
+        </Menu>
+
+        <Grid ColumnDefinitions="300,Auto,*" Margin="8,8,8,8">
+            <Border Grid.Column="0" 
+                    Background="{DynamicResource SystemChromeMediumLowColor}"
+                    Padding="8"
+                    CornerRadius="8"
+                    Margin="8">
+                <DockPanel>
+                    <TextBox DockPanel.Dock="Top" 
+                             Text="{Binding SearchText}"
+                             Watermark="Search files..."
+                             Margin="0 0 0 8"/>
+                    
+                    <ScrollViewer>
+                        <TreeView ItemsSource="{Binding RootItems}" DoubleTapped="OnTreeViewItemDoubleTapped">
+                            <TreeView.ItemTemplate>
+                                <TreeDataTemplate ItemsSource="{Binding Children}">
+                                    <Border Background="Transparent">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </TreeDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
+                    </ScrollViewer>
+                </DockPanel>
+            </Border>
+
+            <GridSplitter Grid.Column="1" 
+                         Width="1" 
+                         Background="{DynamicResource SystemChromeMediumColor}"
+                         Margin="0 8"/>
+
+            <Border Grid.Column="2"
+                    Background="{DynamicResource SystemChromeMediumLowColor}"
+                    Padding="8"
+                    CornerRadius="8"
+                    Margin="8">
+                <TabControl ItemsSource="{Binding OpenFiles}" 
+                          SelectedItem="{Binding SelectedFile}">
+                    <TabControl.ItemTemplate>
+                        <DataTemplate DataType="vm:FileTabViewModel">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate DataType="vm:FileTabViewModel">
+                            <TextBox Text="{Binding Content}" 
+                                   AcceptsReturn="True" 
+                                   FontFamily="Cascadia Code,Consolas,Menlo,Monospace"
+                                   Background="{DynamicResource SystemChromeMediumColor}"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"/>
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>

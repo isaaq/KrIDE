@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# 
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KrIDE", "KrIDE\KrIDE.csproj", "{7876265C-ED47-4B71-AB5D-BD36A1DDE50A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KrIDE.Tests", "KrIDE.Tests\KrIDE.Tests.csproj", "{B78F0618-DBED-40E3-92ED-F2983AD59BBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7876265C-ED47-4B71-AB5D-BD36A1DDE50A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7876265C-ED47-4B71-AB5D-BD36A1DDE50A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7876265C-ED47-4B71-AB5D-BD36A1DDE50A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7876265C-ED47-4B71-AB5D-BD36A1DDE50A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B78F0618-DBED-40E3-92ED-F2983AD59BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B78F0618-DBED-40E3-92ED-F2983AD59BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B78F0618-DBED-40E3-92ED-F2983AD59BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B78F0618-DBED-40E3-92ED-F2983AD59BBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
